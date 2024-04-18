@@ -16,6 +16,6 @@ fun ListElementComponent() {
 
 @Preview(showBackground = true)
 @Composable
-fun ListElementComponentPreview() {
+private fun ListElementComponentPreview() {
     ListElementComponent()
 }

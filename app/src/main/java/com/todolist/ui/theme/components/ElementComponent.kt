@@ -59,6 +59,6 @@ fun ElementComponent(modifier: Modifier = Modifier) {
 
 @Preview(showBackground = true)
 @Composable
-fun ElementComponentPreview() {
+private fun ElementComponentPreview() {
     ElementComponent()
 }
