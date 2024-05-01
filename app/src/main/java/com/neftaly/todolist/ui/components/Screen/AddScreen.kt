@@ -62,7 +62,7 @@ fun AddScreen() {
                     .fillMaxWidth(),
                 onClick = {
                     // almacenamos los datos
-                    val newTask = plantilla(titleTask.value, descriptionTask.value)
+                    val newTask = plantilla(titleTask.value, descriptionTask.value, state = false)
                     ListaTareas.value.add(newTask)
 
                     // limpiamos los text field

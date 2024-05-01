@@ -37,8 +37,7 @@ fun TaskScreen() {
                 itemsIndexed(ListaTareas.value) { index, item ->
                     CardComponent(
                         modifier = Modifier.fillMaxWidth(),
-                        title = item.title,
-                        description = item.description
+                        task = item
                     )
                 }
             }
