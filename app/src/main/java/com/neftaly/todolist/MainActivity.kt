@@ -35,33 +35,37 @@ class MainActivity : ComponentActivity() {
                 val navItems = NavBarItemList()
 
                 // aqui va en la cuestion
-                Scaffold (
+                Scaffold(
                     topBar = {
                         val InstitutionalBlue = Color(0xFF0D47A1) // Define your color here
                         val BackgroundGray = Color(0xFFBDBDBD) // Define your color here
                         TopAppBar(
                             colors = topAppBarColors(
-                                containerColor = InstitutionalBlue, titleContentColor = BackgroundGray, ),title = {
+                                containerColor = InstitutionalBlue,
+                                titleContentColor = BackgroundGray,
+                            ), title = {
                                 Text(stringResource(id = R.string.app_name))
                             }
                         )
-                    },bottomBar = {
+                    }, bottomBar = {
                         NavBarComponent(
-                            items = navItems, currentRoute = currentRoute) {
-                                currentNavigationItem -> navController.navigate(currentNavigationItem.route){
-                            navController.graph.startDestinationRoute?.let{
-                                    startDestinationRoute -> popUpTo(startDestinationRoute){
-                                saveState = true
+                            items = navItems, currentRoute = currentRoute
+                        ) { currentNavigationItem ->
+                            navController.navigate(currentNavigationItem.route) {
+                                navController.graph.startDestinationRoute?.let { startDestinationRoute ->
+                                    popUpTo(startDestinationRoute) {
+                                        saveState = true
+                                    }
+                                }
+                                launchSingleTop = true
+                                restoreState = true
                             }
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
                         }
                     }
-                ){
-                        innerPadding -> NavBarGraph(
-                    navController = navController, innerPadding = innerPadding)
+                ) { innerPadding ->
+                    NavBarGraph(
+                        navController = navController, innerPadding = innerPadding
+                    )
                 }
             }
         }
@@ -78,33 +82,36 @@ fun MainActivityPreview() {
         val currentRoute: String? = navBackStackEntry?.destination?.route
         val navItems = NavBarItemList()
 
-        Scaffold (
+        Scaffold(
             topBar = {
                 val InstitutionalBlue = Color(0xFF0D47A1)
                 val BackgroundGray = Color(0xFFBDBDBD)
                 TopAppBar(
                     colors = topAppBarColors(
-                        containerColor = InstitutionalBlue, titleContentColor = BackgroundGray, ),title = {
+                        containerColor = InstitutionalBlue, titleContentColor = BackgroundGray,
+                    ), title = {
                         Text(stringResource(id = R.string.app_name))
                     }
                 )
-            },bottomBar = {
+            }, bottomBar = {
                 NavBarComponent(
-                    items = navItems, currentRoute = currentRoute) {
-                        currentNavigationItem -> navController.navigate(currentNavigationItem.route){
-                    navController.graph.startDestinationRoute?.let{
-                            startDestinationRoute -> popUpTo(startDestinationRoute){
-                        saveState = true
+                    items = navItems, currentRoute = currentRoute
+                ) { currentNavigationItem ->
+                    navController.navigate(currentNavigationItem.route) {
+                        navController.graph.startDestinationRoute?.let { startDestinationRoute ->
+                            popUpTo(startDestinationRoute) {
+                                saveState = true
+                            }
+                        }
+                        launchSingleTop = true
+                        restoreState = true
                     }
-                    }
-                    launchSingleTop = true
-                    restoreState = true
-                }
                 }
             }
-        ){
-                innerPadding -> NavBarGraph(
-            navController = navController, innerPadding = innerPadding)
+        ) { innerPadding ->
+            NavBarGraph(
+                navController = navController, innerPadding = innerPadding
+            )
         }
     }
 }
