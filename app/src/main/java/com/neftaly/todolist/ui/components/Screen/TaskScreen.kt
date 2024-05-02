@@ -46,7 +46,6 @@ fun TaskScreen() {
                         task = item,
                         onLongPress = {
                             // logica de navegacion
-                            navController.navigate(ScreenRoute.Edit.route.replace("{taskIndex}", index.toString()))
                         }
                     )
                 }
