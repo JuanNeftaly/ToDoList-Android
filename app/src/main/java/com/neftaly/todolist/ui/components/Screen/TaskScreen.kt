@@ -43,10 +43,7 @@ fun TaskScreen() {
                 itemsIndexed(ListaTareas.value) { index, item ->
                     CardComponent(
                         modifier = Modifier.fillMaxWidth(),
-                        task = item,
-                        onLongPress = {
-                            // logica de navegacion
-                        }
+                        task = item
                     )
                 }
             }

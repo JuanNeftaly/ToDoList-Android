@@ -69,7 +69,7 @@ fun AddScreen() {
                 } else {
                     // almacenamos los datos
                     val newTask =
-                        plantilla(titleTask.value, descriptionTask.value, mutableStateOf(false))
+                        plantilla(mutableStateOf(titleTask.value), mutableStateOf(descriptionTask.value), mutableStateOf(false))
                     ListaTareas.value.add(newTask)
 
                     // limpiamos los text field
