@@ -14,12 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.compose.rememberNavController
+import com.neftaly.todolist.ui.components.BottomNavBar.ScreenRoute
 import com.neftaly.todolist.ui.components.Card.CardComponent
 import com.neftaly.todolist.ui.data.ListaTareas
 import com.neftaly.todolist.ui.model.plantilla
 
 @Composable
 fun TaskScreen() {
+
+    // navegacion
+    val navController = rememberNavController()
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -37,7 +43,11 @@ fun TaskScreen() {
                 itemsIndexed(ListaTareas.value) { index, item ->
                     CardComponent(
                         modifier = Modifier.fillMaxWidth(),
-                        task = item
+                        task = item,
+                        onLongPress = {
+                            // logica de navegacion
+                            navController.navigate(ScreenRoute.Edit.route.replace("{taskIndex}", index.toString()))
+                        }
                     )
                 }
             }

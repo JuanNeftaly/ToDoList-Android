@@ -62,6 +62,7 @@ fun AddScreen() {
             }
 
             Button(modifier = Modifier.fillMaxWidth(), onClick = {
+
                 // verificamos si los campos estan vacios
                 if (titleTask.value.isBlank() || descriptionTask.value.isBlank()) {
                     errorMessage.value = "Rellene ambos campos"

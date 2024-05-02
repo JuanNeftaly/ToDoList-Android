@@ -7,6 +7,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.neftaly.todolist.ui.components.Screen.AddScreen
+import com.neftaly.todolist.ui.components.Screen.EditScreen
 import com.neftaly.todolist.ui.components.Screen.ProfileScreen
 import com.neftaly.todolist.ui.components.Screen.TaskScreen
 
@@ -26,6 +27,11 @@ fun NavBarGraph(
         }
         composable(ScreenRoute.Profile.route){
             ProfileScreen()
+        }
+
+        // test
+        composable(ScreenRoute.Edit.route){
+            EditScreen()
         }
     }
 }
