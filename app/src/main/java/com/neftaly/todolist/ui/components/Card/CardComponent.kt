@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import com.neftaly.todolist.ui.model.plantilla
 
 @Composable
-fun CardComponent(modifier: Modifier, task: plantilla) {
+fun CardComponent(modifier: Modifier = Modifier, task: plantilla) {
 
     Card(colors = CardDefaults.cardColors(
         containerColor = if (task.state.value) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.surfaceVariant,
@@ -37,10 +37,10 @@ fun CardComponent(modifier: Modifier, task: plantilla) {
         ) {
             Column(
                 verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.Start,
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth(0.9f)
-                    .padding(2.dp)
+                    .padding(start = 20.dp, top = 2.dp, end = 2.dp, bottom = 2.dp)
             ) {
                 Text(text = task.title.value)
 
@@ -52,6 +52,8 @@ fun CardComponent(modifier: Modifier, task: plantilla) {
 
             // Checkbox
             Checkbox(
+                modifier = Modifier
+                    .padding(end = 20.dp),
                 checked = task.state.value,
                 onCheckedChange = { task.state.value = it }
             )
