@@ -37,10 +37,13 @@ fun EditionComponent(
                 }
             },
             confirmButton = {
-                TextButton(onClick = {
-                    onConfirm(_title, _description)
-                    onClose()
-                }) {
+                TextButton(
+                    onClick = {
+                        onConfirm(_title, _description)
+                        onClose()
+                    },
+                    enabled = _title.isNotBlank() && _description.isNotBlank()
+                ) {
                     Text("Guardar")
                 }
             },
