@@ -31,6 +31,9 @@ fun AddScreen() {
     val titleTask = remember { mutableStateOf("") }
     val descriptionTask = remember { mutableStateOf("") }
 
+    // variable de error
+    val errorMessage = remember { mutableStateOf("") }
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -43,33 +46,38 @@ fun AddScreen() {
         ) {
             Text(text = "Add some Task Papu", fontSize = 24.sp, color = Color.Blue)
 
-            TextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
+            TextField(modifier = Modifier.fillMaxWidth(),
                 value = titleTask.value,
                 onValueChange = { titleTask.value = it },
                 label = { Text("Title") })
 
-            TextField(
-                modifier = Modifier
-                    .fillMaxWidth(),
+            TextField(modifier = Modifier.fillMaxWidth(),
                 value = descriptionTask.value,
                 onValueChange = { descriptionTask.value = it },
                 label = { Text("Description") })
 
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                onClick = {
+            // logica del error
+            if (errorMessage.value.isNotEmpty()) {
+                Text(text = errorMessage.value, color = Color.Red)
+            }
+
+            Button(modifier = Modifier.fillMaxWidth(), onClick = {
+
+                // verificamos si los campos estan vacios
+                if (titleTask.value.isBlank() || descriptionTask.value.isBlank()) {
+                    errorMessage.value = "Rellene ambos campos"
+                } else {
                     // almacenamos los datos
                     val newTask =
-                        plantilla(titleTask.value, descriptionTask.value, mutableStateOf(false))
+                        plantilla(mutableStateOf(titleTask.value), mutableStateOf(descriptionTask.value), mutableStateOf(false))
                     ListaTareas.value.add(newTask)
 
                     // limpiamos los text field
                     titleTask.value = ""
                     descriptionTask.value = ""
-                }) {
+                    errorMessage.value = ""
+                }
+            }) {
                 Text("Hecho")
             }
         }

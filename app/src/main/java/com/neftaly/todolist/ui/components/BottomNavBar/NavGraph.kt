@@ -24,8 +24,5 @@ fun NavBarGraph(
         composable(ScreenRoute.Add.route){
             AddScreen()
         }
-        composable(ScreenRoute.Profile.route){
-            ProfileScreen()
-        }
     }
 }
