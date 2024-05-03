@@ -20,12 +20,6 @@ fun NavBarItemList(): List<NavBarItem> {
             ScreenRoute.Add.route,
             ImageVector.vectorResource(id = R.drawable.agregar_selected),
             ImageVector.vectorResource(id = R.drawable.agregar_unselected)
-        ),
-        NavBarItem(
-            stringResource(id = R.string.navbar_profile),
-            ScreenRoute.Profile.route,
-            ImageVector.vectorResource(id = R.drawable.usuario_selected),
-            ImageVector.vectorResource(id = R.drawable.usuario_unselected)
         )
     )
 }
