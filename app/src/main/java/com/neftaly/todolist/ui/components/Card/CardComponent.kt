@@ -1,6 +1,8 @@
 package com.neftaly.todolist.ui.components.Card
 
+import EditionComponent
 import android.annotation.SuppressLint
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,6 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -23,12 +26,28 @@ import com.neftaly.todolist.ui.model.plantilla
 
 @Composable
 fun CardComponent(modifier: Modifier = Modifier, task: plantilla) {
+    // variables del cuadro de dialogo
+    val (editWindow, setShowDialog) = remember { mutableStateOf(false) }
 
-    Card(colors = CardDefaults.cardColors(
-        containerColor = if (task.state.value) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.surfaceVariant,
-    ), modifier = modifier
-        .size(width = 300.dp, height = 75.dp)
-        .padding(4.dp))
+    // componente de edicion
+    EditionComponent(
+        task = task,
+        showDialog = editWindow,
+        onClose = { setShowDialog(false) },
+        onConfirm = { title, description ->
+            task.title.value = title
+            task.description.value = description
+        }
+    )
+
+    Card(
+        colors = CardDefaults.cardColors(
+            containerColor = if (task.state.value) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.surfaceVariant,
+        ), modifier = modifier
+            .size(width = 300.dp, height = 75.dp)
+            .padding(4.dp)
+            .clickable { setShowDialog(true) }
+    )
     {
         Row(
             verticalAlignment = Alignment.CenterVertically,
