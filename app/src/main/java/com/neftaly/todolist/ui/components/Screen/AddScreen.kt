@@ -62,13 +62,14 @@ fun AddScreen() {
             }
 
             Button(modifier = Modifier.fillMaxWidth(), onClick = {
+
                 // verificamos si los campos estan vacios
                 if (titleTask.value.isBlank() || descriptionTask.value.isBlank()) {
                     errorMessage.value = "Rellene ambos campos"
                 } else {
                     // almacenamos los datos
                     val newTask =
-                        plantilla(titleTask.value, descriptionTask.value, mutableStateOf(false))
+                        plantilla(mutableStateOf(titleTask.value), mutableStateOf(descriptionTask.value), mutableStateOf(false))
                     ListaTareas.value.add(newTask)
 
                     // limpiamos los text field

@@ -3,6 +3,8 @@ package com.neftaly.todolist
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -15,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.neftaly.todolist.ui.components.BottomNavBar.NavBarComponent
@@ -37,8 +40,9 @@ class MainActivity : ComponentActivity() {
                 // aqui va en la cuestion
                 Scaffold(
                     topBar = {
-                        val InstitutionalBlue = Color(0xFF0D47A1) // Define your color here
-                        val BackgroundGray = Color(0xFFBDBDBD) // Define your color here
+                        val InstitutionalBlue = Color(0xFF0D47A1)
+                        val BackgroundGray = Color(0xFFBDBDBD)
+
                         TopAppBar(
                             colors = topAppBarColors(
                                 containerColor = InstitutionalBlue,
@@ -47,6 +51,7 @@ class MainActivity : ComponentActivity() {
                                 Text(stringResource(id = R.string.app_name))
                             }
                         )
+
                     }, bottomBar = {
                         NavBarComponent(
                             items = navItems, currentRoute = currentRoute
@@ -63,9 +68,11 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 ) { innerPadding ->
-                    NavBarGraph(
-                        navController = navController, innerPadding = innerPadding
-                    )
+                    Box(modifier = Modifier.padding(top = 56.dp, bottom = 56.dp)) {
+                        NavBarGraph(
+                            navController = navController, innerPadding = innerPadding
+                        )
+                    }
                 }
             }
         }

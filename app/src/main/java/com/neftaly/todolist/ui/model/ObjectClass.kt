@@ -4,7 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 
 data class plantilla(
-    var title: String,
-    var description: String,
+    var title: MutableState<String>,
+    var description: MutableState<String>,
     var state: MutableState<Boolean> = mutableStateOf(false)
 )
